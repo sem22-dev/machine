@@ -1,30 +1,38 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
-
+import { usePathname } from "next/navigation"
 
 export default  function SideBar() {
+
+  const pathname = usePathname()
+
+
     return (
-      <div className="h-full w-fit ml-5 sm:ml-15 lg:ml-16 xl:ml-32 text-left hidden lg:flex flex-col border-r gap-4 pr-10 pt-32 ">
-        <div className=" flex flex-col gap-4 text-md font-bold pb-4">
-          <div className="flex items-center gap-2">
-            <Image src={"/popular.svg"} width={20} height={20} alt="popular"/>
-            <Link href="/"><h1>Trending Memes</h1></Link>
+      <div>
+        {pathname === "/createMeme" ? 
+            "" : 
+          <div className={` fixed h-full w-fit ml-5 sm:ml-15 lg:ml-16 xl:ml-32 text-left hidden lg:flex flex-col border-r gap-4 pr-5 pt-32`}>
+            <div className=" flex flex-col gap-2 text-md font-bold pb-4">
+              <SideBarItems bgColor={ pathname ==="/" ? '#C2DEDC' : 'white'} textColor={pathname ==="/" ? '#404049' : ''} icon="/popular.svg" text="Trending Memes" link="/"/>
+              <SideBarItems bgColor={ pathname ==="/" ? '' : ''} textColor={pathname ==="/" ? '' : ''} icon="/create.svg" text="Create a Meme" link="/createMeme"/>
+              <SideBarItems bgColor={ pathname ==="/" ? '' : ''} textColor={pathname ==="/" ? '' : ''} icon="/next.svg" text="Meme Gallery" link="/"/>
+              <SideBarItems bgColor={ pathname ==="/" ? '' : ''} textColor={pathname ==="/" ? '' : ''} icon="/dogieHead.svg" text="DogePoundNfts" link="/"/>
+            </div>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="w-[20px] h-auto"><Image src={"/create.svg"} width={20} height={20} alt="popular"/></div>
-            <Link href="/createMeme"><h1>Create a Meme</h1></Link>
-          </div>
-          <div className="flex items-center gap-2">
-          <div className="w-[20px] h-auto"> <Image src={"/popular.svg"} width={20} height={20} alt="popular"/></div>
-            <Link href="/"><h1>Meme gallery</h1></Link>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-[20px] h-auto"><Image src={"/popular.svg"} width={20} height={20} alt="popular"/></div>
-            <Link href="/"><h1>DogePoundNfts</h1></Link>
-          </div>
-        </div>
+          }
       </div>
     )
+  }
+
+ function SideBarItems({icon, text, link, textColor, bgColor}: {icon : string, text:string, link:string, textColor: string, bgColor: string}){
+      return(
+        <div style={{backgroundColor: bgColor, color: textColor}} className="flex cursor-pointer hover:bg-[#C2DEDC] hover:text-[#404049] p-2 rounded-lg items-center gap-2">
+          <div className="w-[20px] h-auto"><Image src={icon} width={20} height={20} alt="popular"/></div>
+          <Link href={link}><h1>{text}</h1></Link>
+        </div>
+      )
   }
   
 

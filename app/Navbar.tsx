@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useEffect, useState } from "react" 
+import { usePathname } from "next/navigation"
 
 // svgs
 export function NightIcon({dark} : {dark: boolean}){
@@ -35,7 +36,8 @@ export default  function Navbar() {
     const [rotate, setRotate] = useState(false)
     const [dark, setDark] = useState(false)
 
-  
+    const pathname = usePathname();
+
     useEffect(() => {
         if(showMenu) {
             document.body.style.overflowY = "hidden"
@@ -47,7 +49,7 @@ export default  function Navbar() {
 
     useEffect(() => {
         if(dark) {
-            document.body.style.backgroundColor = "rgb(75 85 99)",
+            document.body.style.backgroundColor = "#181826",
             document.body.style.color = "white"
         } else {
             document.body.style.backgroundColor = "white",
@@ -56,15 +58,14 @@ export default  function Navbar() {
     },[dark])
 
     return (
-        <nav className={`px-5 sm:px-15 lg:px-16 xl:px-32  ${dark ? "bg-gray-600 text-white" : "bg-white text-[#404049]"} sticky top-0 border-b`}>
+        <nav className={` z-50 px-5 sm:px-15 lg:px-16 xl:px-32  ${dark ? "bg-[#181826] text-white" : "bg-white text-[#404049]"} sticky top-0 border-b`}>
             {/* for screen larger than md */}
             <div className="py-5 hidden lg:flex justify-between">
                 <div>
-                    <Link href={'/'} className=" font-bold text-4xl">DOGe</Link>
+                    <Link href={'/'} className=" font-extrabold text-4xl">DOGe</Link>
                 </div>
                 <div className="flex gap-14 text-lg font-semibold items-center ">
-                    <Link href={"/createMeme"}>Create</Link>
-                    <Link href={"/"}>Trending</Link>
+                    <Link href={"/createMeme"} className={`${pathname === '/createMeme' ? 'text-red-500' : ' '}`}>Create Memes</Link>
                     <Link href={'/'} className="flex gap-1 items-center">
                         <WalletIcon dark={dark} />
                     </Link>
