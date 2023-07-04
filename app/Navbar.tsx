@@ -65,7 +65,9 @@ export default  function Navbar() {
                     <Link href={'/'} className=" font-extrabold text-4xl">DOGe</Link>
                 </div>
                 <div className="flex gap-14 text-lg font-semibold items-center ">
-                    <Link href={"/createMeme"} className={`${pathname === '/createMeme' ? 'text-red-500' : ' '}`}>Create Memes</Link>
+                    <Link href="/createMeme" className="rounded-md animated-border px-4 py-2 flex justify-center items-center">
+                    Create Memes
+                    </Link>                  
                     <Link href={'/'} className="flex gap-1 items-center">
                         <WalletIcon dark={dark} />
                     </Link>

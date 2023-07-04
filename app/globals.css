@@ -7,3 +7,30 @@
     margin: none;
     padding: none;
 }
+
+.animated-border {
+    animation: borderAnimation 5s infinite linear;
+    box-shadow: -10px 0 20px -5px pink;
+  }
+  
+  @keyframes borderAnimation {
+    0% {
+      box-shadow: -10px 0 20px -5px pink, 10px 0 20px -5px cyan;
+    }
+    40% {
+      box-shadow: 0px 0 20px -5px pink, 0px 0 20px -5px pink;
+    }
+    60% {
+      box-shadow: 10px 0 20px -5px pink, -10px 0 20px -5px pink;
+    }
+    100% {
+      box-shadow: -10px 0 20px -5px pink, 10px 0 20px -5px cyan;
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
